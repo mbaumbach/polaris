@@ -38,6 +38,8 @@ export interface OptionListProps {
   verticalAlign?: Alignment;
   /** Callback when selection is changed */
   onChange(selected: string[]): void;
+  /** Callback when pointer enters an option */
+  onPointerEnter?(selected: string[]): void;
 }
 
 export function OptionList({
@@ -51,6 +53,7 @@ export function OptionList({
   verticalAlign,
   onChange,
   id: idProp,
+  onPointerEnter,
 }: OptionListProps) {
   const [normalizedOptions, setNormalizedOptions] = useState(
     createNormalizedOptions(options, sections, title),
@@ -86,6 +89,18 @@ export function OptionList({
       onChange([selectedValue]);
     },
     [normalizedOptions, selected, allowMultiple, onChange],
+  );
+
+  const handlePointerEnter = useCallback(
+    (sectionIndex: number, optionIndex: number) => {
+      if (!onPointerEnter) return;
+
+      const selectedValue =
+        normalizedOptions[sectionIndex].options[optionIndex].value;
+
+      onPointerEnter([selectedValue]);
+    },
+    [normalizedOptions, onPointerEnter],
   );
 
   const optionsExist = normalizedOptions.length > 0;
@@ -125,6 +140,7 @@ export function OptionList({
                 allowMultiple={allowMultiple}
                 verticalAlign={verticalAlign}
                 role={optionRole}
+                onPointerEnter={handlePointerEnter}
               />
             );
           });
