@@ -206,9 +206,11 @@ export interface ActionListItemDescriptor
 
 export interface ActionListSection {
   /** Section title */
-  title?: string;
+  title?: React.ReactNode;
   /** Collection of action items for the list */
   items: readonly ActionListItemDescriptor[];
+  /** Section help text */
+  helpText?: React.ReactNode;
 }
 
 export interface ComplexAction

@@ -61,11 +61,24 @@ export function Section({
     <Box
       paddingBlockStart="4"
       paddingInlineStart="4"
-      paddingBlockEnd="2"
+      paddingBlockEnd={section.helpText ? '1' : '2'}
       paddingInlineEnd="4"
     >
       <Text as="p" variant="headingXs">
         {section.title}
+      </Text>
+    </Box>
+  ) : null;
+
+  const helpTextMarkup = section.helpText ? (
+    <Box
+      paddingBlockStart={section.title ? '0' : '2'}
+      paddingInlineStart="4"
+      paddingBlockEnd="2"
+      paddingInlineEnd="4"
+    >
+      <Text as="span" color="subdued" breakWord>
+        {section.helpText}
       </Text>
     </Box>
   ) : null;
@@ -86,6 +99,7 @@ export function Section({
   const sectionMarkup = (
     <>
       {titleMarkup}
+      {helpTextMarkup}
       <Box
         as="ul"
         padding="2"
