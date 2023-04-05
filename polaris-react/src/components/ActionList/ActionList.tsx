@@ -34,7 +34,7 @@ export function ActionList({
 }: ActionListProps) {
   let finalSections: readonly ActionListSection[] = [];
   const actionListRef = useRef<HTMLDivElement & HTMLUListElement>(null);
-  const sectionId = useUniqueId('ActionListSection');
+  const sectionId = useUniqueId();
 
   if (items) {
     finalSections = [{items}, ...sections];
