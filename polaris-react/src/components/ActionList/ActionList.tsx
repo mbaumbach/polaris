@@ -51,7 +51,7 @@ export function ActionList({
   const sectionMarkup = finalSections.map((section, index) => {
     return section.items.length > 0 ? (
       <Section
-        key={sectionId}
+        key={sectionId ? `${sectionId}-${index}` : index}
         section={section}
         hasMultipleSections={hasMultipleSections}
         actionRole={actionRole}
