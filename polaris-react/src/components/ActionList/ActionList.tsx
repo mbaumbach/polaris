@@ -8,7 +8,6 @@ import {KeypressListener} from '../KeypressListener';
 import {Key} from '../../types';
 import type {ActionListItemDescriptor, ActionListSection} from '../../types';
 import {Box} from '../Box';
-import {useUniqueId} from '../../utilities/unique-id';
 
 import {Section, Item} from './components';
 import type {ItemProps} from './components';
@@ -34,7 +33,6 @@ export function ActionList({
 }: ActionListProps) {
   let finalSections: readonly ActionListSection[] = [];
   const actionListRef = useRef<HTMLDivElement & HTMLUListElement>(null);
-  const sectionId = useUniqueId();
 
   if (items) {
     finalSections = [{items}, ...sections];
@@ -51,7 +49,7 @@ export function ActionList({
   const sectionMarkup = finalSections.map((section, index) => {
     return section.items.length > 0 ? (
       <Section
-        key={sectionId ? `${sectionId}-${index}` : index}
+        key={typeof section.title === 'string' ? section.title : index}
         section={section}
         hasMultipleSections={hasMultipleSections}
         actionRole={actionRole}

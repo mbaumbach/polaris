@@ -11,6 +11,7 @@ import styles from '../../ActionList.scss';
 import {handleMouseUpByBlurring} from '../../../../utilities/focus';
 import {Inline} from '../../../Inline';
 import {Box} from '../../../Box';
+import {TickSmallMinor} from '@shopify/polaris-icons';
 
 export type ItemProps = ActionListItemDescriptor;
 
@@ -80,11 +81,21 @@ export function Item({
     </span>
   );
 
-  const suffixMarkup = suffix && (
-    <Box>
-      <span className={styles.Suffix}>{suffix}</span>
-    </Box>
-  );
+  let suffixMarkup: React.ReactNode | null = null;
+
+  if (active) {
+    suffixMarkup = (
+      <span className={styles.Suffix}>
+        <Icon source={TickSmallMinor} />
+      </span>
+    );
+  } else if (suffix) {
+    suffixMarkup = suffix && (
+      <Box>
+        <span className={styles.Suffix}>{suffix}</span>
+      </Box>
+    );
+  }
 
   const textMarkup = <span className={styles.Text}>{contentMarkup}</span>;
 
