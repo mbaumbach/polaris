@@ -85,9 +85,11 @@ export function Item({
 
   if (active) {
     suffixMarkup = (
-      <span className={styles.Suffix}>
-        <Icon source={TickSmallMinor} />
-      </span>
+      <Box>
+        <span className={styles.Suffix}>
+          <Icon source={TickSmallMinor} />
+        </span>
+      </Box>
     );
   } else if (suffix) {
     suffixMarkup = suffix && (
