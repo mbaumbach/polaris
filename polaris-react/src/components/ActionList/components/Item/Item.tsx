@@ -1,4 +1,5 @@
 import React from 'react';
+import {TickSmallMinor} from '@shopify/polaris-icons';
 
 import {classNames} from '../../../../utilities/css';
 import type {ActionListItemDescriptor} from '../../../../types';
@@ -11,7 +12,6 @@ import styles from '../../ActionList.scss';
 import {handleMouseUpByBlurring} from '../../../../utilities/focus';
 import {Inline} from '../../../Inline';
 import {Box} from '../../../Box';
-import {TickSmallMinor} from '@shopify/polaris-icons';
 
 export type ItemProps = ActionListItemDescriptor;
 
